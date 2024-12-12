@@ -19,10 +19,7 @@ def data_loader(filename='input'):
 def process_update(update, rules):
     for page in update:
         page_index = update.index(page)
-        try:
-            rule_index = update.index(rules[page])
-        except:
-            continue
+        rule_values = rules[page]
         if page_index < rule_index:
             continue
         else:
