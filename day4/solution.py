@@ -1,6 +1,7 @@
 def data_loader(filename='input'):
     with open(filename, 'r') as f:
         data = f.readlines()
+    data = [d.strip() for d in data]
     return data
 
 def check_next_letter(wordsearch, x_start, y_start, x_inc, y_inc, word='XMAS'):
@@ -8,12 +9,11 @@ def check_next_letter(wordsearch, x_start, y_start, x_inc, y_inc, word='XMAS'):
     if not word:
         return 1
     x_new, y_new = x_start + x_inc, y_start +y_inc
-    print(x_new, y_new)
     if x_new == len(wordsearch[0]) or x_new < 0 or y_new == len(wordsearch) or y_new < 0:
         return 0
-    next_letter = wordsearch[x_start + x_inc][y_start +y_inc]
+    next_letter = wordsearch[y_start +y_inc][x_start + x_inc]
     if next_letter == word[0]:
-        check_next_letter(wordsearch, x_new, y_new, x_inc, y_inc, word=word)
+        return check_next_letter(wordsearch, x_new, y_new, x_inc, y_inc, word=word)
     else:
         return 0
     return 0
